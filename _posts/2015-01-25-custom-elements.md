@@ -112,7 +112,7 @@ function labeledSlider(responses) {
     .map(ev => ev.target.value);
   let value$ = initialValue$.concat(newValue$);
   let props$ = responses.props.getAll();
-  let vtree$ = Rx.Observable
+  let vtree$ = Cycle.Rx.Observable
     .combineLatest(props$, value$, (props, value) =>
       h('div.labeled-slider', [
         h('span.label', [
@@ -151,7 +151,7 @@ function labeledSlider(responses) {
     let initialValue$ = context.props.get('initial').first();
     let value$ = initialValue$.concat(actions.changeValue$);
     let props$ = context.props.getAll();
-    return Rx.Observable.combineLatest(props$, value$,
+    return Cycle.Rx.Observable.combineLatest(props$, value$,
       (props, value) => { return {props, value}; }
     );
   }
@@ -207,7 +207,7 @@ function labeledSlider(responses) {
     let initialValue$ = context.props.get('initial').first();
     let value$ = initialValue$.concat(actions.changeValue$);
     let props$ = context.props.getAll();
-    return Rx.Observable.combineLatest(props$, value$,
+    return Cycle.Rx.Observable.combineLatest(props$, value$,
       (props, value) => { return {props, value}; }
     );
   }
@@ -249,7 +249,7 @@ function intent(DOM) {
 }
 
 function model(actions) {
-  return Rx.Observable
+  return Cycle.Rx.Observable
     .combineLatest(
       actions.changeWeight.startWith(70),
       actions.changeHeight.startWith(170),
@@ -320,7 +320,7 @@ function labeledSlider(responses) {
     .map(ev => ev.target.value);
   let value$ = initialValue$.concat(newValue$);
   let props$ = responses.props.getAll();
-  let vtree$ = Rx.Observable
+  let vtree$ = Cycle.Rx.Observable
     .combineLatest(props$, value$, (props, value) =>
       h('div.labeled-slider', [
         h('div.label',
